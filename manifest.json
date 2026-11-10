@@ -1,0 +1,20 @@
+{
+  "name": "SafePal Clone",
+  "short_name": "SafePal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0e11",
+  "theme_color": "#5b34e8",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
