@@ -7,14 +7,14 @@
   "theme_color": "#0b0e11",
   "icons": [
     {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAVFBMVEVKIe9IHu9GGu9NJO9VL/BXMfBCEe9xVPLNw/rc1Pzi2/2EafR2WfP08f7///+snPdBB+/w7P38+/+pmPfq5v339v5UKvA+AO+ahfbSyPujkPaolfeDi26bAAAAoUlEQVR4AcTPRRbEIBAAUSQuDfEE7n/OEdz2qR3vY43eDrtyI7TS1XVmTdv1umHEqU0zmBjPbDG0bgSnth+Lai7YcpwXV12JkXaG5TLz3ChSTB+AhZtLFkZiFR75AvJCYZcMEUR8lLCl8fjQWNFt1tcCc0tQFLaDnMcyNYmRbV5Ux16wFXRLaogzMM2Z4XHodV2rLKquv4PGMzMT3gQywAAAoZgKe9EDtrQAAAAASUVORK5CYII=",
+      "src": "https://proicons.com/icon/371251.svg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAVFBMVEVKIe9IHu9GGu9NJO9VL/BXMfBCEe9xVPLNw/rc1Pzi2/2EafR2WfP08f7///+snPdBB+/w7P38+/+pmPfq5v339v5UKvA+AO+ahfbSyPujkPaolfeDi26bAAAAoUlEQVR4AcTPRRbEIBAAUSQuDfEE7n/OEdz2qR3vY43eDrtyI7TS1XVmTdv1umHEqU0zmBjPbDG0bgSnth+Lai7YcpwXV12JkXaG5TLz3ChSTB+AhZtLFkZiFR75AvJCYZcMEUR8lLCl8fjQWNFt1tcCc0tQFLaDnMcyNYmRbV5Ux16wFXRLaogzMM2Z4XHodV2rLKquv4PGMzMT3gQywAAAoZgKe9EDtrQAAAAASUVORK5CYII=",
+      "src": "https://proicons.com/icon/371251.svg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/svg+xml"
     }
   ]
 }
