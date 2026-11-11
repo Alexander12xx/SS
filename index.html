@@ -6,7 +6,6 @@
     <title>SafePal</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0b0e11">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,17 +22,9 @@
             }
         }
     </script>
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            background-color: #0b0e11; 
-            color: #ffffff; 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-            overflow-x: hidden;
-        }
+        body { background-color: #0b0e11; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; user-select: none; overflow-x: hidden; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -68,17 +59,16 @@
         /* Tab Underline */
         .tab-btn.active { color: #fff; font-weight: 600; border-bottom: 2px solid #5b34e8; }
         .tab-btn { color: #8b949e; border-bottom: 2px solid transparent; }
+        
+        /* Safe Area */
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 8px); }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen -->
+    <!-- Splash Screen (Logo Only) -->
     <div id="splash" class="splash-screen">
-        <div class="flex flex-col items-center">
-            <!-- Online Logo Fallback -->
-            <img src="https://play-lh.googleusercontent.com/O6jK1eYj7M5N8O_9y7b4X7F8N6w7yP5c4X3Z2Y1X0W9V8U7T6S5R4Q3P2O1N0M9L8K7J6H5G4F3E2D1C0B9A8Z7Y6X5W4V3U2T1S0R9Q8P7O6N5M4L3K2J1H0G9F8E7D6C5B4A3Z2Y1X0" onerror="this.src='https://cryptologos.cc/logos/safepal-sfp-logo.png'" class="w-20 h-20 mb-4 rounded-2xl shadow-lg" alt="Logo">
-            <h1 class="text-2xl font-bold tracking-wider">SafePal</h1>
-        </div>
+        <img src="https://proicons.com/icon/371251.svg" class="w-24 h-24" alt="Logo">
     </div>
 
     <!-- Login Screen -->
@@ -87,7 +77,6 @@
             <h1 class="text-2xl font-semibold mb-2">Welcome back!</h1>
             <p class="text-textMuted text-sm mb-12">Unlock SafePal App with password</p>
             
-            <!-- PIN Boxes (8 boxes for 00112233) -->
             <div class="flex justify-center mb-12 w-full" id="pinContainer">
                 <div class="pin-box"></div>
                 <div class="pin-box"></div>
@@ -104,7 +93,6 @@
             </button>
         </div>
 
-        <!-- Custom Keypad -->
         <div class="bg-cardBg p-3 grid grid-cols-3 gap-2 pb-10">
             <button class="keypad-btn" data-key="1">1</button>
             <button class="keypad-btn" data-key="2">2</button>
@@ -115,7 +103,7 @@
             <button class="keypad-btn" data-key="7">7</button>
             <button class="keypad-btn" data-key="8">8</button>
             <button class="keypad-btn" data-key="9">9</button>
-            <div></div> <!-- Empty space -->
+            <div></div>
             <button class="keypad-btn" data-key="0">0</button>
             <button class="keypad-btn" id="backspaceBtn"><i class="fas fa-backspace text-lg"></i></button>
         </div>
@@ -127,19 +115,18 @@
         <!-- Top Header -->
         <div class="flex justify-between items-center px-4 pt-4 pb-2">
             <div class="flex items-center gap-4">
-                <!-- Hexagon Icon -->
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
                 <div class="relative">
-                    <i class="fas fa-wallet text-xl"></i>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                     <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold">14</span>
                 </div>
             </div>
             <div class="flex items-center gap-2">
                 <span class="font-semibold text-[17px]">xtx..g-QFL</span>
-                <i class="fas fa-chevron-down text-xs text-gray-400"></i>
-                <i class="far fa-copy text-gray-400 text-sm ml-1"></i>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="m6 9 6 6 6-6"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 ml-1"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             </div>
-            <i class="fas fa-expand text-lg"></i>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
         </div>
 
         <!-- Tabs -->
@@ -154,19 +141,16 @@
             
             <!-- Wallet Tab -->
             <div id="content-wallet" class="tab-content">
-                <!-- Balance Section -->
                 <div class="text-center mb-8 relative">
                     <div class="text-textMuted text-sm flex justify-center items-center gap-2 mb-2">
                         Balance <i id="toggleBalanceBtn" class="fas fa-eye text-gray-400 cursor-pointer"></i>
                     </div>
                     
-                    <!-- Visible Balances -->
                     <div id="visibleBalances">
                         <div id="totalBalanceDisplay" class="text-4xl font-semibold mb-1">$0</div>
                         <div id="btcBalanceDisplay" class="text-textMuted text-sm">0 BTC</div>
                     </div>
                     
-                    <!-- Hidden Balances -->
                     <div id="hiddenBalances" class="hidden">
                         <div class="text-4xl font-semibold mb-1 tracking-widest mt-2">******</div>
                         <div class="text-textMuted text-sm mt-3">****** BTC</div>
@@ -174,7 +158,6 @@
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="flex justify-between items-start mb-8 px-1">
                     <div class="flex flex-col items-center gap-2 cursor-pointer">
                         <div class="action-btn"><i class="fas fa-arrow-up"></i></div>
@@ -198,7 +181,6 @@
                     </div>
                 </div>
 
-                <!-- Search and Filters -->
                 <div class="flex gap-2 mb-4">
                     <div class="flex-1 bg-cardBg rounded-xl flex items-center px-3 border border-[#2c3035]">
                         <i class="fas fa-search text-gray-500 mr-2 text-sm"></i>
@@ -212,10 +194,7 @@
                     </div>
                 </div>
 
-                <!-- Coin List -->
-                <div id="coinList" class="space-y-2">
-                    <!-- Injected via JS -->
-                </div>
+                <div id="coinList" class="space-y-2"></div>
             </div>
 
             <!-- Earn Tab -->
@@ -233,7 +212,6 @@
                     <div class="text-textMuted text-sm">≈ 0 BTC</div>
                 </div>
 
-                <!-- Banner -->
                 <div class="rounded-2xl overflow-hidden mb-6 relative bg-gradient-to-r from-blue-700 to-purple-700 shadow-lg">
                     <div class="p-5 relative z-10">
                         <h3 class="text-lg font-bold mb-1 text-white">Deposit & Earn Win<br>USDC Edition Wallet</h3>
@@ -242,7 +220,6 @@
                             <span class="bg-green-400 text-black text-[10px] font-bold px-3 py-1.5 rounded-full">Join Now</span>
                         </div>
                     </div>
-                    <!-- Decorative circles simulating the background image -->
                     <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black/40 to-transparent"></div>
                     <i class="fas fa-wallet absolute right-4 top-1/2 transform -translate-y-1/2 text-6xl text-white/20"></i>
                 </div>
@@ -284,13 +261,11 @@
             <!-- NFT Tab -->
             <div id="content-nft" class="tab-content hidden">
                 <div class="flex gap-3 overflow-x-auto hide-scrollbar mb-6 py-2">
-                    <!-- Network Icons -->
                     <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035]"><img src="https://essamamdani.github.io/open-crypto-icons/icons/colored/eth.svg" class="w-8 h-8 rounded-full"></div>
                     <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035]"><img src="https://essamamdani.github.io/open-crypto-icons/icons/colored/matic.svg" class="w-8 h-8 rounded-full"></div>
                     <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035]"><img src="https://essamamdani.github.io/open-crypto-icons/icons/colored/arb.svg" class="w-8 h-8 rounded-full"></div>
                     <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035]"><img src="https://essamamdani.github.io/open-crypto-icons/icons/colored/trx.svg" class="w-8 h-8 rounded-full"></div>
                     <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035]"><img src="https://essamamdani.github.io/open-crypto-icons/icons/colored/sol.svg" class="w-8 h-8 rounded-full"></div>
-                    <div class="w-12 h-12 rounded-full bg-cardBg flex items-center justify-center p-1 border border-[#2c3035] text-yellow-400 font-bold">G</div>
                 </div>
                 
                 <div class="flex gap-2 mb-20">
@@ -329,7 +304,7 @@
                     <div class="space-y-4 text-sm">
                         <div class="flex justify-between items-center">
                             <span class="font-medium">50+ bps decrease</span>
-                            <span class="text-gray-500 w-12 text-right"><1%</span>
+                            <span class="text-gray-500 w-12 text-right">&lt;1%</span>
                             <div class="flex gap-2 w-40 justify-end">
                                 <span class="bg-green-500/20 text-green-400 px-2 py-1.5 rounded-lg text-xs font-medium w-16 text-center">Yes 0.4¢</span>
                                 <span class="bg-red-500/20 text-red-400 px-2 py-1.5 rounded-lg text-xs font-medium w-16 text-center">No 99.7¢</span>
@@ -337,7 +312,7 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="font-medium">25 bps decrease</span>
-                            <span class="text-gray-500 w-12 text-right"><1%</span>
+                            <span class="text-gray-500 w-12 text-right">&lt;1%</span>
                             <div class="flex gap-2 w-40 justify-end">
                                 <span class="bg-green-500/20 text-green-400 px-2 py-1.5 rounded-lg text-xs font-medium w-16 text-center">Yes 0.5¢</span>
                                 <span class="bg-red-500/20 text-red-400 px-2 py-1.5 rounded-lg text-xs font-medium w-16 text-center">No 99.6¢</span>
@@ -446,9 +421,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                 </div>
-                <div id="perpList" class="space-y-2">
-                    <!-- Injected via JS -->
-                </div>
+                <div id="perpList" class="space-y-2"></div>
                 <div class="mt-8 text-center text-accent text-sm font-medium cursor-pointer">Explore More <i class="fas fa-arrow-right ml-1"></i></div>
             </div>
 
@@ -457,19 +430,24 @@
         <!-- Bottom Navigation -->
         <div class="fixed bottom-0 left-0 right-0 bg-cardBg border-t border-[#2c3035] flex justify-around py-3 z-50 pb-safe">
             <button class="nav-btn active flex flex-col items-center" data-tab="wallet">
-                <i class="fas fa-wallet text-xl mb-1"></i><span class="text-[10px] font-medium">Wallet</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+                <span class="text-[10px] font-medium">Wallet</span>
             </button>
             <button class="nav-btn flex flex-col items-center" data-tab="market">
-                <i class="fas fa-chart-bar text-xl mb-1"></i><span class="text-[10px] font-medium">Market</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                <span class="text-[10px] font-medium">Market</span>
             </button>
             <button class="nav-btn flex flex-col items-center" data-tab="explore">
-                <i class="fas fa-th-large text-xl mb-1"></i><span class="text-[10px] font-medium">Explore</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                <span class="text-[10px] font-medium">Explore</span>
             </button>
             <button class="nav-btn flex flex-col items-center" data-tab="swap">
-                <i class="fas fa-exchange-alt text-xl mb-1"></i><span class="text-[10px] font-medium">Swap</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+                <span class="text-[10px] font-medium">Swap</span>
             </button>
             <button class="nav-btn flex flex-col items-center" data-tab="trade">
-                <i class="fas fa-arrow-right-arrow-left text-xl mb-1"></i><span class="text-[10px] font-medium">Trade</span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-1"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                <span class="text-[10px] font-medium">Trade</span>
             </button>
         </div>
     </div>
@@ -520,19 +498,18 @@
             </div>
             <i class="fas fa-chevron-right text-gray-500 text-sm"></i>
         </div>
-        <div class="menu-item border-none pb-12">
+        <div class="menu-item border-none pb-12" id="adminSettingsTrigger">
             <div class="flex items-center">
-                <div class="menu-icon-wrapper"><i class="fas fa-history text-lg"></i></div>
-                <span class="text-base font-medium">Payment History</span>
+                <div class="menu-icon-wrapper"><i class="fas fa-cog text-lg"></i></div>
+                <span class="text-base font-medium">Settings</span>
             </div>
             <i class="fas fa-chevron-right text-gray-500 text-sm"></i>
         </div>
     </div>
     
-    <!-- Overlay for slide menu -->
     <div id="menuOverlay" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300"></div>
 
-    <!-- Hidden Admin Panel -->
+    <!-- Hidden Admin Panel (Fund Editor) -->
     <div id="adminPanel" class="hidden-admin">
         <div class="bg-cardBg border border-[#2c3035] p-6 rounded-2xl w-full max-w-sm shadow-2xl">
             <h2 class="text-xl font-bold mb-2 text-center">Developer Panel</h2>
@@ -827,7 +804,6 @@
             moreBtn.addEventListener('click', () => {
                 moreMenu.classList.add('active');
                 menuOverlay.classList.remove('hidden');
-                // Small delay to allow display block to apply before opacity transition
                 setTimeout(() => menuOverlay.classList.add('opacity-100'), 10);
             });
             
@@ -839,23 +815,13 @@
             const adminPanel = document.getElementById('adminPanel');
             const amountInput = document.getElementById('adminAmount');
             
-            // Trigger: Tap the "Balance" text 5 times quickly
-            let tapCount = 0;
-            document.querySelector('#content-wallet .text-textMuted.text-sm').addEventListener('click', (e) => {
-                if (e.target.id === 'toggleBalanceBtn') return; 
-                tapCount++;
-                if (tapCount >= 5) {
-                    adminPanel.classList.add('active');
-                    amountInput.value = '';
-                    tapCount = 0;
-                }
-                setTimeout(() => tapCount = 0, 2000);
-            });
-
-            // URL trigger
-            if (window.location.search.includes('debug=true')) {
+            // Trigger via Settings menu
+            document.getElementById('adminSettingsTrigger').addEventListener('click', () => {
+                document.getElementById('moreMenu').classList.remove('active');
+                document.getElementById('menuOverlay').classList.add('hidden');
                 adminPanel.classList.add('active');
-            }
+                amountInput.value = '';
+            });
 
             // Plus/Minus logic for custom keypad
             document.getElementById('btnMinus').addEventListener('click', () => {
@@ -890,16 +856,12 @@
     </script>
     
     <style>
-        /* Shake Animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
             20%, 40%, 60%, 80% { transform: translateX(4px); }
         }
         .animate-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        
-        /* Safe Area Padding for modern phones */
-        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 8px); }
     </style>
 </body>
 </html>
