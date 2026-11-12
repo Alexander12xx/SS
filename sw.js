@@ -1,4 +1,4 @@
-const CACHE_NAME = 'safepal-pwa-v5';
+const CACHE_NAME = 'safepal-pwa-v6';
 const ASSETS = [
   './',
   './index.html',
