@@ -8,25 +8,25 @@
   "theme_color": "#0b0e11",
   "icons": [
     {
-      "src": "https://cdnlogo.com/logo/safepal_27840.html",
+      "src": "images/logo__2_-removebg-preview.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://cdnlogo.com/logo/safepal_27840.html",
+      "src": "images/logo__2_-removebg-preview.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://cdnlogo.com/logo/safepal_27840.html",
+      "src": "images/logo__2_-removebg-preview.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "https://cdnlogo.com/logo/safepal_27840.html",
+      "src": "images/logo__2_-removebg-preview.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
