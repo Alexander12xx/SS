@@ -48,6 +48,13 @@
         .menu-item:last-child { border-bottom: none; }
         .menu-icon-wrapper { width: 44px; height: 44px; border-radius: 50%; background-color: #1e2329; display: flex; justify-content: center; align-items: center; margin-right: 16px; }
         
+        /* Scanner Screen */
+        .scanner-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; z-index: 2000; display: none; flex-direction: column; align-items: center; }
+        .scanner-screen.active { display: flex; }
+        .scan-frame { width: 250px; height: 250px; border: 2px solid #5b34e8; border-radius: 20px; position: relative; margin-top: 100px; box-shadow: 0 0 20px rgba(91, 52, 232, 0.3); }
+        .scan-line { width: 100%; height: 2px; background-color: #5b34e8; position: absolute; top: 0; box-shadow: 0 0 10px #5b34e8; animation: scan 2s infinite linear; }
+        @keyframes scan { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+
         /* Hidden Admin */
         .hidden-admin { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; backdrop-filter: blur(5px); }
         .hidden-admin.active { display: flex; }
@@ -60,15 +67,25 @@
         .tab-btn.active { color: #fff; font-weight: 600; border-bottom: 2px solid #5b34e8; }
         .tab-btn { color: #8b949e; border-bottom: 2px solid transparent; }
         
-        /* Safe Area */
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 8px); }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+        .animate-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen (Logo Only) -->
+    <!-- Splash Screen (Base64 Logo) -->
     <div id="splash" class="splash-screen">
-        <img src="https://proicons.com/icon/371251.svg" class="w-24 h-24" alt="Logo">
+        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L3 6V18L12 22L21 18V6L12 2Z" fill="#5b34e8"/>
+            <path d="M12 5L6 8V16L12 19L18 16V8L12 5Z" fill="white"/>
+            <path d="M12 9L9 11V14L12 15L15 14V11L12 9Z" fill="#5b34e8"/>
+        </svg>
     </div>
 
     <!-- Login Screen -->
@@ -115,9 +132,13 @@
         <!-- Top Header -->
         <div class="flex justify-between items-center px-4 pt-4 pb-2">
             <div class="flex items-center gap-4">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                <div class="relative">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <!-- Hexagon Icon -->
+                <svg id="settingsIcon" class="cursor-pointer" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <div class="relative cursor-pointer" id="notificationsIcon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                     <span class="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center font-bold">14</span>
                 </div>
             </div>
@@ -126,7 +147,8 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="m6 9 6 6 6-6"/></svg>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 ml-1"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+            <!-- Scanner Icon -->
+            <svg id="scannerIcon" class="cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><rect width="7" height="7" x="8" y="8" rx="1"></rect></svg>
         </div>
 
         <!-- Tabs -->
@@ -509,6 +531,24 @@
     
     <div id="menuOverlay" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300"></div>
 
+    <!-- Scanner Screen Simulation -->
+    <div id="scannerScreen" class="scanner-screen">
+        <div class="w-full flex justify-between items-center p-6 text-white pt-12">
+            <i class="fas fa-arrow-left text-xl cursor-pointer" onclick="document.getElementById('scannerScreen').classList.remove('active')"></i>
+            <span class="font-bold text-lg">Scan</span>
+            <i class="fas fa-bolt text-xl text-yellow-400"></i>
+        </div>
+        <div class="scan-frame">
+            <div class="scan-line"></div>
+            <!-- Corner accents -->
+            <div class="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-accent rounded-tl-lg"></div>
+            <div class="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-accent rounded-tr-lg"></div>
+            <div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-4 border-l-4 border-accent rounded-bl-lg"></div>
+            <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-accent rounded-br-lg"></div>
+        </div>
+        <p class="text-gray-400 text-sm mt-8">Align QR code within frame to scan</p>
+    </div>
+
     <!-- Hidden Admin Panel (Fund Editor) -->
     <div id="adminPanel" class="hidden-admin">
         <div class="bg-cardBg border border-[#2c3035] p-6 rounded-2xl w-full max-w-sm shadow-2xl">
@@ -581,6 +621,7 @@
             setupNavigation();
             setupMoreMenu();
             setupAdminPanel();
+            setupTopIcons();
         });
 
         // --- State Management ---
@@ -789,6 +830,24 @@
             });
         }
 
+        // --- Top Icons Logic ---
+        function setupTopIcons() {
+            // Hexagon opens Settings Admin
+            document.getElementById('settingsIcon').addEventListener('click', () => {
+                document.getElementById('adminPanel').classList.add('active');
+            });
+
+            // Bell shows notification
+            document.getElementById('notificationsIcon').addEventListener('click', () => {
+                alert("No new notifications");
+            });
+
+            // Scanner opens scanner screen
+            document.getElementById('scannerIcon').addEventListener('click', () => {
+                document.getElementById('scannerScreen').classList.add('active');
+            });
+        }
+
         // --- More Menu Logic ---
         function setupMoreMenu() {
             const moreBtn = document.getElementById('moreBtn');
@@ -815,7 +874,7 @@
             const adminPanel = document.getElementById('adminPanel');
             const amountInput = document.getElementById('adminAmount');
             
-            // Trigger via Settings menu
+            // Trigger via Settings menu option
             document.getElementById('adminSettingsTrigger').addEventListener('click', () => {
                 document.getElementById('moreMenu').classList.remove('active');
                 document.getElementById('menuOverlay').classList.add('hidden');
@@ -823,7 +882,7 @@
                 amountInput.value = '';
             });
 
-            // Plus/Minus logic for custom keypad
+            // Plus/Minus logic
             document.getElementById('btnMinus').addEventListener('click', () => {
                 let val = parseFloat(amountInput.value) || 0;
                 amountInput.value = Math.abs(val) > 0 ? -Math.abs(val) : 0;
@@ -851,17 +910,8 @@
 
         // Register Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
+            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
         }
     </script>
-    
-    <style>
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-            20%, 40%, 60%, 80% { transform: translateX(4px); }
-        }
-        .animate-shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-    </style>
 </body>
 </html>
